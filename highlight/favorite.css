@@ -1,0 +1,105 @@
+.hljs {
+  color: #ffffff;
+  background: #282b2e;
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px 0 rgb(0 0 0 / 40%);
+  z-index: 1;
+  padding-top: 35px !important;;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: bold;
+}
+
+/* 代码块tab-顶部小圆点 */
+.hljs::before {
+  background: #fc625d;
+  border-radius: 50%;
+  box-shadow: 20px 0 0 0 #fdbc40, 40px 0 0 0 #35cd4b;
+  content: '';
+  height: 12px;
+  width: 12px;
+  left: 15px;
+  margin-top: -22px;
+  position: absolute;
+  display: block;
+  z-index: 2;
+}
+
+.hljs-params {
+  color: #ff9823;
+}
+/* 布尔值 */
+.hljs-literal{
+  color: rgb(80, 250, 123);
+}
+/* 数字 */
+.hljs-number{
+  padding-right: 10px !important;
+  color: rgb(119, 119, 119);
+  
+}
+
+/* 行号的颜色 */
+.hljs-symbol,
+.hljs-bullet {
+  color: rgb(119, 119, 119);
+}
+
+/* 关键词 */
+.hljs-function,
+.hljs-built_in,
+.hljs-name,
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-deletion {
+  color: rgb(255, 121, 198);
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link {
+  color: #629755;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #808080;
+}
+
+.hljs-meta {
+  color: #5bdaed;
+}
+
+.hljs-string,
+.hljs-attribute,
+.hljs-addition {
+  color: #eedc70;
+}
+
+.hljs-attr,
+.hljs-section,
+.hljs-title,
+.hljs-type {
+  color: #a5da2d;
+}
+
+.hljs-selector-class {
+  color: #a5da2d;
+}
+
+.hljs-name,
+.hljs-selector-id{
+  color: #f92672;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}

@@ -1,0 +1,2591 @@
+/* 重置默认样式 */
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* 基本页面样式 */
+body {
+    width: 100%;
+    font-size: 16px;
+    font-family: \"Helvetica Neue\", Helvetica, \"Hiragino Sans GB\", \"Microsoft YaHei\", Arial, sans-serif;
+    line-height: 1.6;
+    overflow: hidden; /* 防止滚动条出现 */
+}
+
+/* 表单元素字体设置 */
+button,
+input,
+select,
+textarea {
+    font: 300 1em/1.8 'PingFang SC', 'Lantinghei SC', 'Microsoft Yahei', 'Hiragino Sans GB', 'Microsoft Sans Serif', 'WenQuanYi Micro Hei', 'sans';
+}
+
+select * {
+    font: 300 1em/1.8 'PingFang SC', 'Lantinghei SC', 'Microsoft Yahei', 'Hiragino Sans GB', 'Microsoft Sans Serif', 'WenQuanYi Micro Hei', 'sans';
+}
+
+/* 主容器 */
+.all_container {
+    width: 100%;
+}
+
+/* 显示区域 */
+#display_area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100% !important;
+    border-bottom: 1px solid #959b6f;
+    border-top: 1px solid #959b6f;
+}
+
+/* 底部容器 */
+#container_foot {
+    all: initial !important;
+}
+
+/* 底部CSS */
+#foot_css {
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 12px;
+    color: #50616D;
+}
+
+#cssEditArea{
+    top: 48px !important;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+}
+
+
+
+/* 左侧编辑器 */
+#editor {
+    position: relative;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 0;
+    margin: 0;
+    padding: 50px 20px 20px;
+    overflow: auto;
+    background-color: #36312C !important;
+    font-family: courier, monospace;
+    font-size: inherit;
+    color: #fff;
+    word-wrap: break-word;
+    word-break: normal;
+    white-space: pre-wrap;
+    resize: none;
+    border: none;
+    outline: none;
+}
+
+/* 主页 -->编辑器滚动条样式 */
+#editor::-webkit-scrollbar {
+    width: 7px;
+}
+
+#editor::-webkit-scrollbar-track {
+    background: rgb(54,49,44);
+    border-radius: 10px;
+}
+
+#editor::-webkit-scrollbar-thumb {
+    background-color: rgb(38,34,31);
+    border-radius: 10px;
+}
+
+#editor::-webkit-scrollbar-track:hover {
+    background: rgb(61,57,53);
+}   
+
+
+
+
+/* 其他滚动条样式 */
+.CodeMirror-vscrollbar,#cssEditArea::-webkit-scrollbar {
+    width: 7px;
+}
+.CodeMirror-vscrollbar,#cssEditArea::-webkit-scrollbar {
+height: 7px;
+}
+
+.CodeMirror-vscrollbar,#cssEditArea::-webkit-scrollbar-track {
+    background: rgb(54,49,44) !important;
+    border-radius: 10px !important;
+}
+
+.CodeMirror-vscrollbar,#cssEditArea::-webkit-scrollbar-thumb {
+    background-color: rgb(38,34,31) !important;
+    border-radius: 10px;
+}
+
+.CodeMirror-vscrollbar,#cssEditArea::-webkit-scrollbar-track:hover {
+    background: rgb(61,57,53) !;
+}
+
+/* 拖动指示器 */
+#drag_indicate {
+    all: unset !important;
+}
+
+
+
+/* 右侧渲染区域 */
+#editor_render {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    -webkit-transform: translate(310px, 0px);
+    transform: translate(310px, 0px);
+    width: 300px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0px 20px 20px ;   
+    overflow: auto;
+    background-color: #fff;
+}
+
+
+/* 标题样式 */
+.Title {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    padding-left: 60px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* 按钮样式 */
+.btn {
+    border: 1px solid #8d994d;
+    padding: 5px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 3px;
+}
+
+/* 复制按钮 */
+#copy_btn {
+    /* 重置所有样式 */
+    all: unset;
+    
+    /* 应用与其他图标一致的样式 */
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin: 0 10px;
+    position: relative;
+    z-index: 100;
+    border: 1px solid transparent; /* 添加透明边框 */
+    border-radius: 4px; /* 添加圆角 */
+    transition: border-color 0.3s ease, color 0.3s ease; /* 添加过渡效果 */
+}
+
+#copy_btn i {
+    font-size: 16px;
+    color: #546072;
+    transition: color 0.3s ease;
+}
+
+#copy_btn:hover,.code-theme-wrapper:hover {
+    border-color: rgba(84, 96, 114, 0.4) !important;  /* 修改为与图标颜色相匹配的边框颜色 */
+}
+
+#copy_btn:hover i {
+    color: #2c3e50;
+}
+
+/* 确保按钮在所有状态下都保持正确的样式 */
+#copy_btn:hover,
+#copy_btn:active,
+#copy_btn:focus {
+    background: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* 调整右侧图标容器样式 */
+#icon_container_right {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 10000;
+    padding: 0 6px;
+    height: 35px;
+    position: relative;
+    background: transparent;
+    top: 5px;
+}
+
+/* 右侧图标组内的所有元素确保可见性 */
+#icon_container_right > * {
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 10001;
+    position: relative;
+    color: rgba(102, 128, 153, 0.35) !important; /* 使用与复制按钮一致的颜色 */
+    transition: color 0.3s ease;
+}
+
+/* 码选择相关样式 */
+#code_select {
+    height: 100%;
+}
+
+#narrowcode_select,
+#codeline_select {
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    margin-right: 15px;
+}
+
+#html_select {
+    display: none;
+    z-index: 3;
+    height: 100%;
+    text-align: center;
+    margin-right: 20px;
+}
+
+/* 主题选择器 */
+.theme-wrapper {
+    display: inline-block;
+    margin-right: 15px;
+    text-align: center;
+    height: 100%;
+}
+
+.theme-wrapper select {
+    background: #FFF;
+}
+
+/* CSS图标 */
+#mycss_icon {
+    margin-right: 15px;
+    text-decoration: none;
+    color: #159957 !important;
+    font-weight: bold;
+}
+
+#mycss_icon:active {
+    -webkit-transform: translate(1px, 1px);
+    transform: translate(1px, 1px);
+}
+
+/* CSS设置面板 */
+#cssSetting {
+    z-index: 4;
+    visibility: hidden;
+}
+
+#cssSetting,
+#file_export_setting {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    background-color: #282b2e;
+    padding: 0px 20px;
+}
+
+/* CSS设置和件导出设置头部 */
+#cssToolHead,
+#file_export_settingHead {
+    display: block;
+    width: 100%;
+    height: 50px;
+    -ms-flex-preferred-size: 50px;
+    flex-basis: 50px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    background-color: #282b2e;
+    color: #ffffff;
+}
+
+/* CSS编辑区域 */
+#file_export_cssEditArea {
+    width: 100%;
+    padding: 12px;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    word-wrap: normal !important;
+    word-break: normal !important;
+    white-space: pre !important;
+    overflow: auto;
+}
+
+/* 修改 file_export_cssEditArea 的样式 */
+#file_export_cssEditArea  {
+    background-color: #f00606;
+    color: #ffffff;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px;
+    position: relative;
+    padding-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* 添加阴影 */
+    outline: none; /* 移除默认的轮廓 */
+}
+
+
+/* 实时亮 */
+#editor-container,#cssEditArea{
+    top:28px;
+    background-color: transparent;
+    color: #ffffff;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px;
+    position: relative;
+    padding: 12px;
+    border-radius: 10px;
+
+    outline: none; /* 移除默认的轮廓 */
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    word-wrap: normal !important;
+    word-break: normal !important;
+    white-space: pre !important;
+    overflow: auto;
+}
+
+
+
+/* 时高亮区域 */
+.CodeMirror ,#cssEditArea{
+    border: none !important;
+    height: 100% !important;
+    /* max-height: 840px !important; */
+    background-color: rgb(0, 0, 0) !important;
+    border-radius: 10px; /* 添加圆角 */
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1), 0 1px 3px rgba(255, 255, 255, 0.08); /* 添加阴影 */
+    /* left: 0px; */
+    padding-bottom: 55px !important;
+}
+
+
+/* 行号 */
+.CodeMirror-linenumbers{
+    background-color: rgb(0, 0, 0) !important;
+
+}
+
+ /* 调整图标颜色以匹配其他图标 */
+ .icon_class i,
+ .icon_class .icon-text,
+ .code-theme-icon i {
+   font-size: 16px;
+   color: rgba(248, 187, 57, 0.4);
+   width: 24px;
+   height: 24px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+
+ /* 确保新图标与其他图标样式一致 */ 
+ #icon_container_DIY .icon_class,
+ #icon_container_left .icon_class,
+ .code-theme-wrapper {
+   padding: 8px 11px ;
+   width: auto;
+   height: auto;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+ }
+
+
+
+
+
+
+
+
+/* 移除激活状态下的边框 */
+#file_export_cssEditArea:focus {
+    outline: none;
+    border: none;
+}
+
+/* 调整交通灯位置以适应新的圆角 */
+#file_export_cssEditArea::before {
+    content: '';
+    position: absolute;
+    top: 15px; /* 稍微向下移动 */
+    left: 15px; /* 稍微向右移动 */
+    width: 12px;
+    height: 12px;
+    background-color: #ff5f56;
+    border-radius: 50%;
+    box-shadow: 20px 0 0 #ffbd2e,
+                40px 0 0 #27c93f;
+}
+
+
+/* 实时输入的交通灯 */
+.CodeMirror::before {
+    content: '';
+    position: sticky;
+    top: 0px;
+    left: 15px;
+    width: 12px;
+    height: 12px;
+    background-color: #ff5f56;
+    border-radius: 50%;
+    box-shadow: 20px 0 0 #ffbd2e,
+                40px 0 0 #27c93f;
+    z-index: 9999;
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+
+#cssEditArea::before{
+    content: '';
+    position: sticky;
+    top: 0px;
+    left: -2px;
+    width: 12px;
+    height: 12px;
+    background-color: #ff5f56;
+    border-radius: 50%;
+    box-shadow: 20px 0 0 #ffbd2e,
+                40px 0 0 #27c93f;
+    z-index: 9999;
+    display: block;
+    margin-bottom: 10px;
+
+}
+
+
+
+/* 调整 CodeMirror 编辑器的内边距 */
+.CodeMirror {
+    padding-top: 10px !important;
+}
+
+.CodeMirror-scroll {
+    padding-top: 0 !important;
+}
+
+/* 确保编辑器内不会被交通灯遮挡 */
+.CodeMirror-lines {
+    padding-top: 15px;
+    padding-left: 6px;;
+}
+
+/* 同样调整 #file_export_cssEditArea 的样式 */
+#file_export_cssEditArea .CodeMirror::before {
+    content: '';
+    position: sticky;
+    top: 10px;
+    left: 10px;
+    width: 12px;
+    height: 12px;
+    background-color: #ff5f56;
+    border-radius: 50%;
+    box-shadow: 20px 0 0 #ffbd2e,
+                40px 0 0 #27c93f;
+    z-index: 9999;
+    display: block;
+    margin-bottom: 10px;
+}
+
+#file_export_cssEditArea .CodeMirror {
+    padding-top: 10px !important;
+}
+
+#file_export_cssEditArea .CodeMirror-scroll {
+    padding-top: 0 !important;
+}
+
+#file_export_cssEditArea .CodeMirror-lines {
+    padding-top: 15px;
+    padding-left: 6px;;
+}
+
+/* 移除之前的 ::before 伪元素 */
+.CodeMirror-scroll::before,
+#file_export_cssEditArea .CodeMirror-scroll::before {
+    content: none;
+}
+
+/* 调整按钮容器样式 */
+#cssToolFoot,
+#file_export_settingFoot {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px 0; /* 移除左右内边 */
+}
+
+/* 为 file_export_settingFoot 添加左右外边距 */
+#file_export_settingFoot {
+    margin-left: auto; /* 修改为自动边距 */
+    margin-right: auto; /* 修改为自动右边距 */
+    
+    max-width: 600px; /* 添加最大宽度 */
+}
+
+
+
+
+
+
+
+
+/* 移除之前可能导致关闭按钮隐藏的样式 */
+#cssToolFoot a,
+#file_export_settingFoot a {
+    text-decoration: none;
+    margin-left: 0; /* 移除可能导致布局问题的左边距 */
+}
+
+
+
+
+/* 文件导出容器 */
+#file_export_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* 防止出现滚动条 */
+}
+
+/* 导出iframe容器 */
+#export_iframe_container {
+    flex: 1;
+    position: relative;
+    overflow: hidden; /* 防止出现滚动条 */
+}
+
+#export_iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#export_iframe_cover {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    width: 0px;
+    height: 100%;
+}
+
+/* 标样式设置 */
+.icon_class {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    text-decoration: none !important;
+    margin: 1px !important; /* 添加 1px 外边距 */
+    padding: 0;
+    border: 1px solid transparent; /* 添加透明边框 */
+    border-radius: 4px; /* 添加圆角 */
+    transition: border-color 0.3s ease, color 0.3s ease; /* 添加边框颜色过渡效果 */
+}
+
+.icon_class:hover {
+    cursor: pointer;
+    text-decoration: none;
+    border-color: rgba(248, 187, 57, 0.4); /* 添加边框颜色，使用主题色 */
+}
+
+.icon_class:hover i,
+.icon_class:hover .icon-text {
+    color: rgba(248, 187, 57, 1);
+}
+
+.icon_class i,
+.icon_class .icon-text {
+    font-size: 16px;
+    color: rgba(248, 187, 57, 0.4);
+}
+/* DIY图标特定样式 */
+#mycss_icon .icon-text {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* 移除有特定图标的外边距和内边距 */
+#mycss_icon, #color_ref {
+    margin: 0;
+    padding: 0;
+}
+
+/* 删除或注释掉以下样式 */
+/*
+#mycss_icon {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #159957 !important;
+    font-weight: bold;
+}
+
+#mycss_icon:active {
+    -webkit-transform: translate(1px, 1px);
+    transform: translate(1px, 1px);
+}
+*/
+
+/* 保存提示 */
+#saveIndicate {
+    display: inline-block;
+    visibility: hidden;
+    margin-left: 20px;
+}
+
+/* HTML选择器 */
+#html_select {
+    color: #1e819e;
+    font-weight: bold;
+}
+
+/* CSS编辑提示和更新 */
+.css_edit_note {
+    color: #159957;
+    font-weight: bold;
+}
+
+.css_edit_update {
+    color: #f82375;
+    font-weight: bold;
+}
+
+/* 文件导出工具头部 */
+#file_export_tool_head {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 50px;
+    background: #ededed;
+    line-height: 50px;
+    vertical-align: middle;
+    padding-left: 40px;
+    color: #3e3e3e;
+}
+
+/* 备案信息 */
+#beian {
+    position: absolute;
+    left: 0px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    display: none;
+}
+
+#beian a {
+    color: #999;
+}
+
+/* 全局弹出窗 */
+#global_popup {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.popup_background {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    opacity: 0.3;
+    z-index: 499;
+}
+
+.popup_conetent {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* 通用弹出窗口样式 */
+.common_pop {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    background: #ededed;
+    border: 5px solid #9E9E9E;
+    border-radius: 10px;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+/* 闭弹出窗口图标 */
+.close_popup_icon {
+    display: inline-block;
+    background: url(" + r(144) + ") no-repeat;
+    height: 26px;
+    width: 26px;
+    vertical-align: middle;
+}
+
+/* 警告样 */
+.warning {
+    color: #E65100;
+}
+
+/* 版本内容 */
+.versionContentId {
+    width: 600px;
+    margin: 30px 10px;
+}
+
+/* 复弹出口内容 */
+.copyPopupContent {
+    background: #2d2d2d;
+    color: #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    width: 640px;
+    min-height: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 复制弹窗的关闭按容器 */
+.copyPopupContent .closePopupContainerId {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+}
+
+/* 复制弹窗的关闭按图标 */
+.copyPopupContent .close_popup_icon {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(248, 187, 57, 0.4);
+    transition: color 0.3s ease;
+    transform: translate(-2px, -2px);
+}
+
+/* 复制弹窗的关闭按钮 X 符 */
+.copyPopupContent .close_popup_icon::before {
+    content: '×';
+    font-size: 28px;
+    line-height: 1;
+}
+
+.copyPopupContent .close_popup_icon:hover {
+    color: rgba(248, 187, 57, 1);
+}
+
+/* 复制弹窗的内容区域 */
+.copyPopupContent .content {
+    flex: 1;
+    background: #363636;
+    border-radius: 8px;
+    padding: 15px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #e0e0e0;
+    border: 1px solid #404040;
+}
+
+/* 复制弹窗的按钮样式 */
+.copyPopupContent .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.copyPopupContent button {
+    background: linear-gradient(45deg, #f8bb39, #f89839);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(248, 187, 57, 0.2);
+}
+
+.copyPopupContent button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(248, 187, 57, 0.3);
+    background: linear-gradient(45deg, #f89839, #f8bb39);
+}
+
+.copyPopupContent button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(248, 187, 57, 0.2);
+}
+
+/* 复制弹窗的滚动条样式 */
+.copyPopupContent .content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.copyPopupContent .content::-webkit-scrollbar-track {
+    background: #2d2d2d;
+    border-radius: 3px;
+}
+
+.copyPopupContent .content::-webkit-scrollbar-thumb {
+    background: #404040;
+    border-radius: 3px;
+}
+
+.copyPopupContent .content::-webkit-scrollbar-thumb:hover {
+    background: #4a4a4a;
+}
+
+/* 文件窗口 */
+#fileWindow {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    width: 100px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    overflow: auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* 文件夹和文件图标样 */
+.folder_close .folder,
+.folder_open .folder,
+.folder_close .folder_status,
+.folder_open .folder_status {
+    display: inline-block;
+    background: url(" + r(56) + ") no-repeat;
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+}
+
+/* 文件夹和文件项样式 */
+.folder_item, .file_item {
+    word-wrap: normal !important;
+    white-space: pre !important;
+}
+
+.folder_item:hover, .file_item:hover {
+    background: #EFEBE9;
+}
+
+/* 弹出窗口样式 */
+.popup {
+    z-index: 500;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: absolute;
+}
+
+.popup_item:hover {
+    background: #424242;
+    color: #ffffff;
+}
+
+.popup_item {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border-top: 1px solid #000000;
+    padding: 10px;
+}
+
+/* 文窗口弹出菜单 */
+#filewindow_popup {
+    display: block;
+    background: #EFEBE9;
+    border: 2px solid #FBE9E7;
+    width: 200px;
+}
+
+/* 颜色选择窗口 */
+.color_windown {
+    position: absolute;
+    bottom: 30px;
+    right: 0;
+    z-index: 200;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 10px;
+    border: 4px solid #CCC;
+    border-radius: 6px;
+    background: white;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    visibility: hidden;
+}
+
+/* 图片设置弹出窗口 */
+.picture_settingPopupContent, .picSettingContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin: 40px 0px 10px 0px;
+    padding: 10px;
+    border: 2px solid #959b6f;
+    border-radius: 5px;
+}
+
+/* 图片传 */
+.uploadPicBtn {
+    display: block;
+    background: #00C853;
+    color: white;
+    border: 1px solid #D7CCC8;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+/* 图片项目列表 */
+.picItems {
+    
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    padding-left: 20px;
+    max-height: 700px;
+    overflow: auto;
+}
+
+.picticItem {
+    width: 100%;
+    height: 60px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+
+.picticItem img {
+    width: 60px;
+    height: 60px;
+}
+
+.picticItem lable {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+/* 移除颜色图标特定的样 */
+#color_ref {
+    margin: 0;
+    padding: 0;
+}
+
+/* 全屏切换按钮样式 */
+#toggle_fullscreen {
+    margin: 0;
+    padding: 0;
+}
+
+#toggle_fullscreen i {
+    transition: all 0.3s ease;
+}
+
+#toggle_fullscreen:hover i {
+    transform: scale(1.1);
+}
+
+/* 编器全屏样式 */
+#editor:fullscreen,
+#editor:-webkit-full-screen,
+#editor:-moz-full-screen,
+#editor:-ms-fullscreen {
+    width: 100vw;
+    height: 100vh;
+    background-color: #36312C;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 确保全屏时文本可见 */
+#editor:fullscreen,
+#editor:-webkit-full-screen,
+#editor:-moz-full-screen,
+#editor:-ms-fullscreen {
+    color: #fff;
+}
+
+/* 在文件末尾添加以下样式 */
+
+/* 模拟全屏模式 */
+body.fullscreen-mode {
+    overflow: hidden;
+}
+
+#editor.fullscreen {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    width: 100vw; /* 修改这里,使用100vw代替100% */
+    height: 100vh;
+    z-index: 999;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #36312C;
+}
+
+/* 确保全屏时文本可见 */
+#editor.fullscreen {
+    color: #fff;
+}
+
+/* 调整全屏模式的滚动条样式 */
+#editor.fullscreen::-webkit-scrollbar {
+    width: 10px;
+}
+
+#editor.fullscreen::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#editor.fullscreen::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+}
+
+/* 隐藏其他元素 */
+body.fullscreen-mode #icon_container_left,
+body.fullscreen-mode #icon_container_right,
+body.fullscreen-mode #drag_indicate,
+body.fullscreen-mode #editor_render,
+body.fullscreen-mode #container_foot {
+    display: none;
+}
+
+/* 保持屏切换按钮可见 */
+body.fullscreen-mode #toggle_fullscreen {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 10000;
+}
+
+/* 全模式样式 */
+#editor.fullscreen {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    z-index: 99 !important;
+    margin: 0 !important;
+    padding: 40px 15% !important; /* 左右内边距改为5% */
+    box-sizing: border-box !important;
+    background-color: #36312C !important;
+}
+
+
+
+/* 确保全屏时文本可见 */
+/* #editor.fullscreen {
+    color: #fff !important;
+} */
+
+/* 在文件末尾添加以下样式 */
+
+/* 屏模式下的图标容器样式 */
+body.fullscreen-mode #icon_container_left {
+    position: fixed;
+    top: 10px;
+    right: 50px; /* 将left改为right，使容器位于右上角 */
+    z-index: 10000;
+    background-color: rgba(54, 49, 44, 0.8);
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row; /* 改为横向排列 */
+    gap: 20px !important; /* 添加图标之间的间距 */
+}
+
+/* 图标的样式 */
+body.fullscreen-mode #icon_container_left .icon_class {
+    margin-bottom: 0; /* 移除竖向的 margin */
+}
+
+
+/* 确保全屏模式下图标可见 */
+body.fullscreen-mode #icon_container_left,
+body.fullscreen-mode #toggle_fullscreen {
+    display: flex;
+}
+
+/* 添加特定的样式为新的文字小图标 */
+#text_icon .icon-text {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* 确保全屏模式下新图也可见 */
+body.fullscreen-mode #icon_container_left {
+    position: fixed;
+    top: 10px;
+    right: 50px;
+    z-index: 10000;
+    background-color: rgba(54, 49, 44, 0.8);
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px !important;
+}
+
+body.fullscreen-mode #icon_container_left .icon_class {
+    margin-bottom: 0;
+}
+
+body.fullscreen-mode #icon_container_left,
+body.fullscreen-mode #toggle_fullscreen,
+body.fullscreen-mode #text_icon {
+    display: flex;
+}
+
+/* 在文件中添加以下样式 */
+
+/* 代码主题图标样式 */
+#code_theme_icon {
+    position: relative;
+}
+
+/* 修改下拉菜单容器样 */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* 修改下拉菜单样式 */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: transparent;
+    min-width: 160px;
+    box-shadow: none;
+    border: none; /* 移除边 */
+    z-index: 1000;
+    top: 100%;
+    left: 0;
+    overflow: hidden;
+}
+
+/* 下拉菜单选项样式 */
+.dropdown-content option {
+    color: rgba(248, 187, 57, 0.4);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background-color: transparent;
+    border: none; /* 移除选项边框 */
+}
+
+/* 鼠标悬停时的样式 */
+.dropdown-content option:hover {
+    background-color: transparent;
+    color: rgba(248, 187, 57, 1);
+}
+
+/* 确保下拉菜在打开时可见且无边框 */
+.code-theme-wrapper:hover .code-theme {
+    opacity: 1;
+    background-color: transparent;
+    border: none;
+}
+
+/* 下拉箭头和框 */
+.code-theme {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: none;
+    color: rgba(248, 187, 57, 0.4);
+    outline: none; /* 移除焦点时的轮廓 */
+}
+
+/* 移除下拉菜单选项的框和背景 */
+.code-theme option {
+    background-color: transparent;
+    color: rgba(248, 187, 57, 0.4);
+    border: none;
+}
+
+/* 保下拉菜单在打开时可见且无边框 */
+.code-theme-wrapper:hover .code-theme {
+    opacity: 1;
+    border: none;
+}
+
+/* 在文件末尾添加以下样式 */
+
+#beian {
+    display: inline-block;
+}
+
+.code-theme-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.code-theme {
+    color: #eee;
+    padding: 5px 20px;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+}
+
+/* 下拉菜单选项样式 */
+.code-theme option {
+    border: none !important;
+    background-color: rgba(102, 128, 153, 0.35);
+    color: #eee;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* 确保下拉菜单在打开时可见 */
+.code-theme-wrapper:hover .code-theme {
+    opacity: 1;
+}
+
+/* 在文件末尾添加以下样式 */
+
+/* 美化下拉列表滚动条 */
+.code-theme {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(174, 175, 175) transparent;
+}
+
+.code-theme::-webkit-scrollbar {
+    width: 8px;
+}
+
+.code-theme::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.code-theme::-webkit-scrollbar-thumb {
+    background-color: rgba(95,95,96);
+    border-radius: 3px;
+    border: 2px solid transparent;
+}
+
+/* .code-theme::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(95,95,96);
+} */
+
+/* 整下拉列表的最大高度和溢出行为 */
+.code-theme {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* 确保下拉列表选项有足够的空间 */
+.code-theme option {
+    padding: 8px 16px;
+}
+
+/* 添加这个新的样式规则 */
+.code-theme option:checked {
+    background-color: #4CAF50 !important; /* 绿色背景 */
+    color: white; /* 确保文字颜色与背景形成对比 */
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* 美化保存和恢复按钮 */
+#cssToolFoot a,
+#file_export_settingFoot a {
+    text-decoration: none;
+    margin-left: 8px; /* 为左边距，因为按钮靠右对齐 */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* 在文件末尾添加以下样式 */
+
+/* 确保新添加的图标与其他图标样式一致 */
+#file_export_exit,
+#file_export_gen_file {
+  margin: 0;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 调整文件名输入框样式,使其与图标对齐 */
+#file_export_nameinput {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+#file_export_fileName {
+  margin: 0 5px;
+  padding: 2px 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* 在文件末尾添加以下样式 */
+
+/* 隐藏标组的样式 */
+#icon_container_left.hidden {
+    display: none;
+}
+
+/* 确保 file_export_container 在显示时覆盖整个屏幕 */
+#file_export_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000; /* 确保它在其他元素之上 */
+    background-color: #fff; /* 或者你想的背景色 */
+}
+
+/* 在文件末尾添加以下式 */
+
+html, body {
+    height: 100% !important;
+    margin: 0;
+    padding: 0;
+}
+
+#file_export_container {
+    height: 100% !important;
+    display: flex;
+    flex-direction: column;
+}
+
+#export_iframe_container {
+    flex: 1;
+    position: relative;
+}
+
+#export_iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* 移除可能导致额外空间的样式 */
+#export_iframe_container {
+    top: 0; /* 移除之前可能设置的 top 值 */
+    margin: 0;
+    padding: 0;
+}
+
+/* 如果有问，可以尝试给 body 添加这个样式 */
+body {
+    overflow: hidden; /* 防止整个页面出现滚动条 */
+}
+
+/* 将 #editor-container 的样式应用到 #file_export_cssEditArea */
+#file_export_cssEditArea {
+    background-color: transparent;
+    color: #ffffff;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px;
+    position: relative;
+    padding-top: 30px;
+    border-radius: 10px;
+    outline: none; /* 移除默认的轮廓 */
+    width: 100%;
+    padding: 20px;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    word-wrap: normal !important;
+    word-break: normal !important;
+    white-space: pre !important;
+    overflow: auto;
+}
+
+/* 实时高亮区域 */
+#file_export_cssEditArea .CodeMirror {
+    color: #ffffff;
+    border: none !important;
+    height: 100% !important;
+    background-color: rgb(0, 0, 0) !important;
+    border-radius: 10px; /* 添加圆角 */
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1), 0 1px 3px rgba(255, 255, 255, 0.08); /* 添加阴影 */
+}
+
+
+
+/* 行号 */
+#file_export_cssEditArea .CodeMirror-linenumbers {
+    background-color: rgb(0, 0, 0) !important;
+}
+
+/* 移除激活状态下的边框 */
+#file_export_cssEditArea:focus {
+    outline: none;
+    border: none;
+}
+
+/* 调整交通灯位置以适应新的圆角 */
+#file_export_cssEditArea::before {
+    content: '';
+    position: absolute;
+    top: 15px; /* 微向下移动 */
+    left: 15px; /* 稍微向右移动 */
+    width: 12px;
+    height: 12px;
+    background-color: #ff5f56;
+    border-radius: 50%;
+    box-shadow: 20px 0 0 #ffbd2e,
+                40px 0 0 #27c93f;
+}
+
+/* 实时输入通灯 */
+#file_export_cssEditArea .CodeMirror-scroll::before {
+    content: '';
+    position: fixed; /* 改为 fixed 定位 */
+    top: 55px;
+    left: 65px;
+    width: 12px;
+    height: 12px;
+    background-color: #ff5f56;
+    border-radius: 50%;
+    box-shadow: 20px 0 0 #ffbd2e,
+                40px 0 0 #27c93f;
+    z-index: 9999; /* 确保在最上层 */
+}
+
+/* 调整 CodeMirror 编辑器的内边距，为交通灯留出空间 */
+#file_export_cssEditArea .CodeMirror-scroll {
+    padding: 30px 20px 0 0px; /* 增加左内边距 */
+ 
+}
+
+/* 确保编辑器容不会被交通灯遮挡 */
+#file_export_cssEditArea .CodeMirror-lines {
+    padding-left: 45px; /* 为交通灯留出空间 */
+}
+
+/* 在文件末尾添加以下样式 */
+
+/* CodeMirror 编辑器的基本字体设置 */
+.CodeMirror {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+}
+
+/* 高亮文字的样式 */
+.CodeMirror .cm-highlight {
+  font-weight: bold;
+}
+
+#cssToolFoot {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    background-color: #282b2e;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+
+
+#css_close i {
+    font-size: 16px;
+    color: rgba(248, 187, 57, 0.4);
+}
+
+#css_close:hover i {
+    color: rgba(248, 187, 57, 1);
+}
+
+/* 修改部具样式，除关闭按钮的相关样式 */
+#cssToolFoot {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    background-color: #282b2e;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+
+
+#file_export_save i,
+#file_export_reset i {
+    font-size: 16px;
+    color: rgba(248, 187, 57, 0.4);
+}
+
+#file_export_save:hover i,
+#file_export_reset:hover i {
+    color: rgba(248, 187, 57, 1);
+}
+
+/* 调整底部工具栏样式 */
+#file_export_settingFoot {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+    background-color: #282b2e;
+    gap: 10px; /* 添加图标之间的间距 */
+}
+
+
+
+/* 添加新的图标按钮样式 */
+#css_save,
+#css_reset {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    text-decoration: none !important;
+    margin: 0;
+    padding: 0;
+}
+
+#css_save i,
+#css_reset i {
+    font-size: 16px;
+    color: rgba(248, 187, 57, 0.4);
+}
+
+#css_save:hover i,
+#css_reset:hover i {
+    color: rgba(248, 187, 57, 1);
+}
+
+/* 调整底部工具栏样式 */
+#cssToolFoot {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    background-color: #282b2e;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    gap: 10px; /* 添加图标之间的间距 */
+}
+
+/* CSS主题选择器样式 */
+#css_select.code-theme-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+}
+
+#css_select .css-theme {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+#css_select .code-theme-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+#css_select .code-theme-icon i {
+    font-size: 16px;
+    color: rgba(248, 187, 57, 0.4);
+}
+
+#css_select:hover .code-theme-icon i {
+    color: rgba(248, 187, 57, 1);
+}
+
+/* 下拉菜单样式 */
+#css_select .css-theme {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: none;
+    color: rgba(248, 187, 57, 0.4);
+    outline: none;
+}
+
+#css_select .css-theme option {
+    background-color: #546072;
+    color: #ffffff;
+    padding: 12px 16px;
+    border: none;
+}
+
+/* 美化下拉列表滚动条 */
+#css_select .css-theme {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(174, 175, 175) transparent;
+}
+
+#css_select .css-theme::-webkit-scrollbar {
+    width: 8px;
+}
+
+#css_select .css-theme::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#css_select .css-theme::-webkit-scrollbar-thumb {
+    background-color: rgba(95,95,96);
+    border-radius: 3px;
+    border: 2px solid transparent;
+}
+
+#css_select .css-theme option:checked {
+    background-color: #4CAF50 !important;
+    color: white;
+}
+
+/* 修改 CSS 主题选择器样式，使其与 code-theme 完全一致 */
+.css-theme-wrapper {
+    position: relative;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+/* 隐藏实际的select元素但保持其功能 */
+.css-theme {
+    position: absolute;
+    opacity: 0;
+    width: 24px; /* 默认状态下宽度更小 */
+    height: 24px;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    z-index: 2;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+}
+
+/* 添加focus状态的样式，当点击时展开宽度 */
+.css-theme:focus {
+    width: 150px; /* 点击时展开到需要的宽度 */
+    min-width: 150px;
+}
+
+/* 确保下拉列表选项始终保持150px宽度 */
+.css-theme option {
+    width: 150px;
+    min-width: 150px;
+}
+
+/* 图标样式 */
+.css-theme-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    pointer-events: none; /* 确保点击事件传递到select */
+}
+
+.css-theme-icon i {
+    font-size: 16px;
+    color: rgba(248, 187, 57, 0.4) !important; /* 修改颜色为主题色 */
+    transition: color 0.3s ease;
+}
+
+/* 悬停效果 */
+.css-theme-wrapper:hover .css-theme-icon i {
+    color: rgba(248, 187, 57, 1) !important; /* 修改悬停颜色为主题色 */
+}
+
+/* 移除所有边框和背 */
+.css-theme,
+.css-theme:focus,
+.css-theme:hover {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* 确保选项列表在打开时正确显示 */
+.css-theme option {
+    background-color: #282b2e;
+    color: rgba(248, 187, 57, 0.4);
+    padding: 8px 12px;
+}
+
+.css-theme option:hover,
+.css-theme option:checked {
+    background-color: #363636;
+    color: rgba(248, 187, 57, 1);
+}
+
+/* 代码相关选项样式 */
+#narrowcode_select,
+#codeline_select,
+#html_select {
+    display: inline-flex !important;
+    align-items: center;
+    height: 100%;
+    margin-right: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: #546072 !important;
+    transition: color 0.3s ease;
+}
+
+#narrowcode_select:hover,
+#codeline_select:hover,
+#html_select:hover {
+    color: #2c3e50 !important;
+}
+
+/* 代码主题选择器样式 */
+#icon_container_right .code-theme-wrapper {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 10001;
+    position: relative;
+}
+
+/* 复制按钮样式 */
+#copy_btn {
+    z-index: 10001;
+    position: relative;
+}
+
+/* 添加这些高优先级的样式规则到文件末尾 */
+#icon_container_right .code-theme-wrapper .code-theme-icon i,
+#icon_container_right .code-theme-wrapper:hover .code-theme-icon i {
+    font-size: 16px;
+    color: #546072 !important;
+    transition: color 0.3s ease !important;
+}
+
+#icon_container_right .code-theme-wrapper:hover .code-theme-icon i {
+    color: #2c3e50 !important;
+}
+
+/* 确保下拉菜单选项也使用相同的颜色 */
+#icon_container_right .code-theme-wrapper .code-theme option {
+    background-color: #546072 !important;
+    color: #ffffff !important;
+}
+
+#icon_container_right .code-theme-wrapper .code-theme option:hover,
+#icon_container_right .code-theme-wrapper .code-theme option:checked {
+    color: #ffffff !important;
+    background-color: #2c3e50 !important;
+}
+
+
+/* 美化 css-theme-select 下拉列表滚动条 */
+.css-theme {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: rgba(248, 187, 57, 0.4) transparent; /* Firefox */
+}
+
+/* Webkit浏览器的滚动条样式 */
+.css-theme::-webkit-scrollbar {
+    width: 6px; /* 滚动条宽度 */
+    height: 6px; /* 水平滚动条高度 */
+}
+
+.css-theme::-webkit-scrollbar-track {
+    background: rgba(40, 43, 46, 0.8); /* 轨道背景色 */
+    border-radius: 3px;
+}
+
+.css-theme::-webkit-scrollbar-thumb {
+    background-color: rgba(248, 187, 57, 0.4); /* 滑块颜色 */
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.css-theme::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(248, 187, 57, 0.8); /* 悬停时的滑块颜色 */
+}
+
+/* 确保下拉列表选项有合适的高度和内边距 */
+.css-theme option {
+    padding: 8px 12px;
+    min-height: 24px;
+    line-height: 24px;
+}
+
+/* 调整拉列表的最大高度，确保出现滚动条 */
+.css-theme {
+    max-height: 1000px !important;
+    overflow-y: auto !important;
+}
+
+/* 片设置弹出窗口的基础样式 */
+.picture_settingPopupContent {
+    background: #282b2e;
+    color: #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    width: 640px;
+    min-height: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 关闭按钮容器样式 */
+.picture_settingPopupContent .closePopupContainerId {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    display: flex !important; /* 强制显示 */
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    cursor: pointer;
+}
+
+/* 修改关闭按钮图标样式 */
+.picture_settingPopupContent .close_popup_icon {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: flex !important; /* 强制显示 */
+    align-items: center;
+    justify-content: center;
+    font-size: 24px; /* 增大字体大小 */
+    color: rgba(248, 187, 57, 0.4);
+    transition: color 0.3s ease;
+}
+
+/* 添加 X 符号 */
+.picture_settingPopupContent .close_popup_icon::before {
+    content: '×';
+    display: block;
+    line-height: 1;
+}
+
+/* 关闭按钮悬停效果 */
+.picture_settingPopupContent .close_popup_icon:hover {
+    color: rgba(248, 187, 57, 1);
+}
+
+/* 上传按钮容器样式 */
+.uploadPicBtnContainer {
+    margin: 20px 0;
+    width: 100%;
+}
+
+/* 上传按钮样式 */
+.uploadPicBtn {
+    background: linear-gradient(45deg, #f8bb39, #f89839);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 24px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(248, 187, 57, 0.2);
+}
+
+.uploadPicBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(248, 187, 57, 0.3);
+    background: linear-gradient(45deg, #f89839, #f8bb39);
+}
+
+/* 图片设置容器样式 */
+.picSettingContainer {
+    background: #363636;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+/* 警告文本样式 */
+.warning {
+    color: #ff9800;
+    font-size: 14px;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: rgba(255, 152, 0, 0.1);
+    border-radius: 5px;
+    border-left: 4px solid #ff9800;
+}
+
+/* 教程链接样式 */
+.picSettingContainer a {
+    color: #f8bb39;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 0;
+    transition: color 0.3s ease;
+}
+
+.picSettingContainer a:hover {
+    color: #f89839;
+    text-decoration: underline;
+}
+
+/* 输入项容器样式 */
+.picInputInfoItem {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 输入项标签样式 */
+.item_name {
+    min-width: 120px;
+    color: #e0e0e0;
+    font-size: 14px;
+}
+
+/* 输入框样式 */
+.picInputInfoItem input {
+    flex: 1;
+    background: #282b2e;
+    border: 1px solid #404040;
+    border-radius: 5px;
+    padding: 8px 12px;
+    color: #e0e0e0;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.picInputInfoItem input:focus {
+    outline: none;
+    border-color: #f8bb39;
+    box-shadow: 0 0 0 2px rgba(248, 187, 57, 0.2);
+}
+
+/* 自动上传图片选项样式 */
+.autouploadImgItem {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+    padding: 8px 0;
+}
+
+.autoUploadImgLabel {
+    white-space: nowrap;
+    font-size: 14px;
+    color: #e0e0e0;
+    margin-right: 10px;
+}
+
+/* 复选框容器样 */
+.autouploadImg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+}
+
+/* 复选框样式 */
+.autouploadImgInput {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #f8bb39;
+    margin: 0;
+}
+
+/* 保存按钮样式 */
+.savePicSetting {
+    background: linear-gradient(45deg, #f8bb39, #f89839);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 24px;
+    margin-top: 20px;
+    width: 100%;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(248, 187, 57, 0.2);
+}
+
+.savePicSetting:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(248, 187, 57, 0.3);
+    background: linear-gradient(45deg, #f89839, #f8bb39);
+}
+
+.savePicSetting:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(248, 187, 57, 0.2);
+}
+
+/* 输入框占位符样式 */
+.picInputInfoItem input::placeholder {
+    color: #666;
+    font-size: 13px;
+}
+
+/* 错误提示样式 */
+.picError {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(244, 67, 54, 0.1);
+    border-radius: 5px;
+    border-left: 4px solid #f44336;
+}
+
+.picError div {
+    color: #f44336;
+    font-size: 13px;
+    margin: 5px 0;
+}
+
+/* 图片项目列表样式优化 */
+.picItems {
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 15px 0;
+    padding: 10px;
+    background: #363636;
+    border-radius: 8px;
+}
+
+/* 图片项目滚动条样式 */
+.picItems::-webkit-scrollbar {
+    width: 6px;
+}
+
+.picItems::-webkit-scrollbar-track {
+    background: #282b2e;
+    border-radius: 3px;
+}
+
+.picItems::-webkit-scrollbar-thumb {
+    background: rgba(248, 187, 57, 0.4);
+    border-radius: 3px;
+}
+
+.picItems::-webkit-scrollbar-thumb:hover {
+    background: rgba(248, 187, 57, 0.6);
+}
+
+/* 修改弹出窗口的基础样式，减小内边距和间距 */
+.picture_settingPopupContent {
+    padding: 15px; /* 减小内边距 */
+    gap: 10px;  /* 减小元素间距 */
+    min-height: 180px; /* 减小最小高度 */
+}
+
+/* 调整关闭按钮位置，使其更紧凑 */
+.picture_settingPopupContent .closePopupContainerId {
+    top: 5px;  /* 向上移动 */
+    right: 5px; /* 向右移动 */
+}
+
+/* 减小上传按钮容器的外边距 */
+.uploadPicBtnContainer {
+    margin: 10px 0; /* 减小上下外边距 */
+}
+
+/* 调整图片设置容器的内边距和外边距 */
+.picSettingContainer {
+    padding: 12px; /* 减小内边距 */
+    margin-top: 10px; /* 减小上外边距 */
+}
+
+/* 减小输入项的间距 */
+.picInputInfoItem {
+    margin: 8px 0; /* 减小上下外边距 */
+    gap: 8px; /* 减小元素间距 */
+}
+
+/* 调整自动上传图片选项的间距 */
+.autouploadImgItem {
+    margin-top: 10px; /* 减小上外边距 */
+    padding: 4px 0; /* 减小上下内边距 */
+}
+
+/* 调整保存按钮的上外边距 */
+.savePicSetting {
+    margin-top: 12px; /* 减小上外边距 */
+}
+
+/* 调整警告文本的内边距和外边距 */
+.warning {
+    margin-bottom: 10px; /* 减小下外边距 */
+    padding: 8px; /* 减小内边距 */
+}
+
+/* 调整图片项目列表的间距 */
+.picItems {
+    margin: 10px 0; /* 减小上下外边距 */
+    padding: 8px; /* 减小内边距 */
+}
+
+/* 确保这些样式存在 */
+#icon_container_right.hidden {
+    display: none !important;
+}
+
+/* 移除复制按钮的抖动效果 */
+.copyPopupContent .close_popup_icon {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(248, 187, 57, 0.4);
+    transition: color 0.3s ease;
+}
+
+/* 移除复制弹窗钮的抖动效果 */
+.copyPopupContent button:hover {
+    box-shadow: 0 6px 8px rgba(248, 187, 57, 0.3);
+    background: linear-gradient(45deg, #f89839, #f8bb39);
+}
+
+.copyPopupContent button:active {
+    box-shadow: 0 2px 4px rgba(248, 187, 57, 0.2);
+}
+
+/* 移除上传按钮的抖动效果 */
+.uploadPicBtn:hover {
+    box-shadow: 0 6px 8px rgba(248, 187, 57, 0.3);
+    background: linear-gradient(45deg, #f89839, #f8bb39);
+}
+
+/* 移除保存按钮的抖动效果 */
+.savePicSetting:hover {
+    box-shadow: 0 6px 8px rgba(248, 187, 57, 0.3);
+    background: linear-gradient(45deg, #f89839, #f8bb39);
+}
+
+.savePicSetting:active {
+    box-shadow: 0 2px 4px rgba(248, 187, 57, 0.2);
+}
+
+/* 修改图标悬停效果，只保留颜色变化 */
+.icon_class:hover i,
+.icon_class:hover .icon-text,
+.code-theme-wrapper:hover .code-theme-icon i {
+    color: rgba(248, 187, 57, 1);
+    transition: color 0.3s ease;
+}
+
+/* 移除所有可能的 transform 过渡效果 */
+.icon_class,
+.icon_class i,
+.code-theme-wrapper,
+.code-theme-icon,
+.close_popup_icon,
+button,
+.uploadPicBtn,
+.savePicSetting {
+    transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 移除悬停和激活状态的所有变换效果 */
+.icon_class:hover,
+.icon_class:active,
+.code-theme-wrapper:hover,
+.code-theme-wrapper:active,
+button:hover,
+button:active,
+.uploadPicBtn:hover,
+.uploadPicBtn:active,
+.savePicSetting:hover,
+.savePicSetting:active {
+    transform: none !important;
+}
+
+/* 确保图标容器本身也不会产生抖动 */
+#icon_container_left,
+#icon_container_right,
+#icon_container_DIY {
+    transform: none !important;
+    transition: none !important;
+}
+
+/* 移除复制弹窗关闭按钮的transform */
+.copyPopupContent .close_popup_icon {
+    transform: none !important;
+}
+
+/* 调整右侧图标容器内的图标样式 */
+#icon_container_right .icon_class {
+    padding: 8px 11px;
+    width: auto;
+    height: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 确保右侧图标组内所有图标都有相同的样式 */
+#icon_container_right .icon_class,
+#icon_container_right .code-theme-wrapper {
+    padding: 8px 11px;
+    width: auto;
+    height: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 调整右侧图标容器样式 */
+#icon_container_right {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 10000;
+    padding: 0 6px;
+    height: 35px;
+    position: relative;
+    background: transparent;
+    top: 10px;
+}
+
+/* 修改代码主题选择器的文本颜色，确保悬停时不会变成白色 */
+#icon_container_right .code-theme-wrapper .code-theme,
+#icon_container_right .code-theme-wrapper:hover .code-theme {
+    color: transparent !important; /* 使文本透明 */
+    -webkit-text-fill-color: transparent; /* 为 Safari 浏览器添加 */
+}
+
+/* 确保选项的文本颜色保持不变 */
+#icon_container_right .code-theme-wrapper .code-theme option {
+    color: #ffffff !important;
+    -webkit-text-fill-color: initial; /* 重置 Safari 的文本颜色 */
+}
+
+/* 修改全屏模式下的图标容器样式 */
+body.fullscreen-mode #icon_container_left {
+    position: fixed;
+    top: 10px;
+    right: 50px;
+    z-index: 10000;
+    background-color: rgba(54, 49, 44, 0.8);
+    padding: 8px;  /* 增加内边距 */
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 12px !important; /* 减小图标间距，使其更紧凑但不会换行 */
+    align-items: center; /* 确保图标垂直居中 */
+    flex-wrap: nowrap; /* 防止图标换行 */
+}
+
+/* 调整全屏模式下图标的样式 */
+body.fullscreen-mode #icon_container_left .icon_class {
+    margin: 0 !important; /* 移除外边距 */
+    padding: 4px !important; /* 减小内边距 */
+    min-width: 24px; /* 设置最小宽度 */
+    height: 24px; /* 确保高度一致 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 确保全屏切换按钮与其他图标对齐 */
+body.fullscreen-mode #toggle_fullscreen {
+    margin: 0 !important;
+    padding: 4px !important;
+}
+
+/* 修改 css-theme-wrapper 的样式，使其与 code-theme-wrapper 保持一致 */
+.css-theme-wrapper {
+    position: relative;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 8px 11px !important; /* 添加与其他图标一致的内边距 */
+    cursor: pointer;
+}
+
+/* 修改 select 元素的样式以确保更大的点击区域 */
+.css-theme {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    z-index: 2;
+    min-width: 150px; /* 确保下拉列表有足够的宽度 */
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+}
+
+/* 修改图标容器样式 */
+.css-theme-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* 确保点击事件传递到 select 元素 */
+}
+
+/* 确保下拉选项的样式与代码主题选择器一致 */
+.css-theme option {
+    background-color: #282b2e;
+    color: rgba(248, 187, 57, 0.4);
+    padding: 8px 12px;
+    min-height: 24px;
+    line-height: 24px;
+}
+
+.css-theme option:hover,
+.css-theme option:checked {
+    background-color: #363636;
+    color: rgba(248, 187, 57, 1);
+}
+
+/* 移除可能影响点击的样式 */
+.css-theme-wrapper,
+.css-theme,
+.css-theme-icon {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* 确保 DIY 模式下的图标样式正确 */
+#icon_container_left .css-theme-wrapper.icon_class.diy-icons {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    margin: 0 !important;
+}
+.css-theme-wrapper{
+    padding: 20px 23px !important;
+}
+/* 修改 select 元素的默认状态样式 */
+.css-theme {
+    padding: 8px 11px !important;
+    position: absolute;
+    opacity: 0;
+    width: 24px !important; /* 默认状态下与图标同宽 */
+    height: 24px !important; /* 默认状态下与图标同高 */
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    z-index: 2;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    min-width: unset; /* 移除最小宽度限制 */
+    overflow: hidden; /* 防止内容溢出 */
+}
+
+/* 仅在点击/聚焦时展开宽度 */
+.css-theme:focus,
+.css-theme:active {
+    width: 150px;
+    min-width: 150px;
+    height: auto;
+    background-color: #282b2e !important;
+}
+
+/* 确保下拉选项有正确的宽度和样式 */
+.css-theme option {
+    width: 150px;
+    padding: 8px 12px;
+    background-color: #282b2e;
+    color: rgba(248, 187, 57, 0.4);
+}
+
+/* 移除可能影响布局的样式 */
+.css-theme-wrapper {
+    width: 24px !important;
+    height: 24px !important;
+    overflow: visible; /* 允许下拉菜单显示在容器外 */
+}
+
+

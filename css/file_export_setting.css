@@ -1,0 +1,26 @@
+/*<span  class="css_edit_note">
+右边为最终生成文件的预览。
+此样式，主要用于设置整体背景，内容的内、外边框等，
+侧重于文档整体框架的样式。
+可任意修改样式，或恢复预设值，保存后生效</span>
+*/
+/*<span  class="css_edit_note">文档整体的属性</span>*/
+body {
+       width: 100%;
+       margin: 0;
+       padding: 0;
+       /* 半透明黑色背景，类似弹出加锁窗口 */
+       background-color: rgba(40, 43, 46);
+}
+/*<span  class="css_edit_note">文档内容的整体属性</span>*/
+#export_content {
+       margin: 48px 20%;
+       padding: 20px;
+       border: 1px solid rgb(149, 155, 111);
+       background: #ffffff;
+       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+       /* 添加阴影效果 */
+       border-radius: 8px;
+       /* 添加圆角 */
+}
+

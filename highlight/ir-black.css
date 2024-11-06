@@ -1,0 +1,97 @@
+/*
+  IR_Black style (c) Vasily Mikhailitchenko <vaskas@programica.ru>
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #000;
+  color: #f8f8f8;
+}
+.hljs {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px 0 rgb(0 0 0 / 40%);
+  z-index: 1;
+  padding-top: 35px !important;;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: bold;
+}
+
+/* 代码块tab-顶部小圆点 */
+.hljs::before {
+  background: #fc625d;
+  border-radius: 50%;
+  box-shadow: 20px 0 0 0 #fdbc40, 40px 0 0 0 #35cd4b;
+  content: '';
+  height: 12px;
+  width: 12px;
+  left: 15px;
+  margin-top: -22px;
+  position: absolute;
+  display: block;
+  z-index: 2;
+}
+.hljs-comment,
+.hljs-quote,
+.hljs-meta {
+  color: #7c7c7c;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-tag,
+.hljs-name {
+  color: #96cbfe;
+}
+
+.hljs-attribute,
+.hljs-selector-id {
+  color: #ffffb6;
+}
+
+.hljs-string,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-addition {
+  color: #a8ff60;
+}
+
+.hljs-subst {
+  color: #daefa3;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #e9c062;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-type,
+.hljs-doctag {
+  color: #ffffb6;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-literal {
+  color: #c6c5fe;
+}
+
+.hljs-number{padding-right: 10px !important; }
+.hljs-deletion {
+  color:#ff73fd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}

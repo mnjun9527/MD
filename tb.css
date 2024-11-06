@@ -1,0 +1,35 @@
+/* 左侧图标组 */    
+#icon_container_left {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    position: absolute;
+    top: 15px;
+    right: 51.5%;
+    z-index: 1000;
+    transform: none !important;
+    transition: none !important;
+}
+
+/* 右侧图标组 */
+#icon_container_right {
+    display: flex;
+    height: 50px;
+    float: right;
+    z-index: 1000;
+    transform: none !important;
+    transition: none !important;
+}
+
+/* 点击导出后的图标组 */    
+#icon_container_DIY {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    position: absolute;
+    top: 15px;
+    right: 51.5%;
+    z-index: 1000;
+    transform: none !important;
+    transition: none !important;
+}

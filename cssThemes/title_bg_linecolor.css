@@ -1,0 +1,767 @@
+/*可任意修改样式，或恢复预设值，保存后生效
+这是个综合的示例，所以对很多地方都进行了修改
+相对“默认样式”而作的修改会用  红色 标注*/
+
+
+.output_wrapper
+
+/*此属性为全局*/
+  {
+  font-size: 15px;
+  /*更改默认的字体大小*/
+  color: #000;
+  line-height: 1.8;
+  /*更改默认的行距*/
+  word-spacing: 2px;
+  /*更改默认的词间距*/
+  letter-spacing: 2px;
+  /*更改默认的字符间距*/
+  font-family:  "Helvetica Neue", Helvetica, "Hiragino Sans GB","Microsoft YaHei",'Source Sans Pro', '等距更纱黑体 SC', Arial, sans-serif;
+
+
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.8rem;
+  letter-spacing: 0;
+  margin: 0;
+  overflow-x: hidden;
+  text-align: justify;
+  text-justify: inter-ideograph;
+
+  /*增加背景网格*/
+  background-image: linear-gradient(90deg, rgba(50, 0, 0, 0.05) 3%, rgba(0, 0, 0, 0) 3%), linear-gradient(360deg, rgba(50, 0, 0, 0.05) 3%, rgba(0, 0, 0, 0) 3%);
+  background-size: 20px 20px;
+  background-position: center center;
+}
+
+.output_wrapper * {
+  font-size: inherit;
+  color: inherit;
+  line-height: inherit;
+  margin: 0px;
+  padding: 0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  line-height: 1.4;
+  cursor: text;
+}
+
+
+h1 {
+  text-align: center;
+  padding-bottom: 0.3em;
+  font-size: 1.6em !important;
+  line-height: 1.2;
+  margin: 2.4em auto 1.2em;
+  display: block;
+}
+
+h2 {
+  /*增加对h2标题的修改*/
+  border-bottom: 2px solid rgb(0, 196, 182);
+  font-size: 1.4em;
+}
+
+h2 span {
+  /*增加对h3标题字体的修改*/
+  display: inline-block;
+  font-weight: normal;
+  background: rgb(0, 196, 182);
+  color: #ffffff;
+  padding: 3px 10px 1px;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  margin-right: 3px;
+}
+
+h2:after {
+  /*增加对h3标题后面的修饰*/
+  display: inline-block;
+  content: " ";
+  vertical-align: bottom;
+  border-bottom: 36px solid #EFEBE9;
+  border-right: 20px solid transparent;
+}
+
+h3 {
+  font-size: 1.3em;
+  line-height: 1.43;
+  /*margin: 1.6em auto 1.2em;*/
+  padding-left: 9px;
+  border-left: 5px solid rgb(0, 196, 182);
+}
+
+h4 {
+  margin: 0.4em auto 0.1em;
+  font-size: 1.2em;
+  padding-left: 6px;
+  padding-right: 6px;
+  display: inline-block;
+  border: 1px solid rgb(0, 196, 182);
+  border-top: 4px solid rgb(0, 196, 182);
+}
+
+h5 {
+  font-size: 1em;
+}
+
+h6 {
+  font-size: 1em;
+}
+
+a[alt="null"]:hover{
+  background-color: inherit;
+  border-radius: 0px;
+  color: #a9a9a9 !important;
+}
+
+
+
+p {
+  /*段落*/
+  margin: 1.7em 0px;
+  /*更改默认的段落距离*/
+}
+
+
+
+ul,
+ol {
+  padding-left: 32px;
+  
+}
+
+ul {
+  /*无序列表*/
+  list-style-type: disc;
+  
+}
+
+ol {
+  /*有序列表*/
+  list-style-type: decimal;
+}
+
+li * {
+  /* color: #3e3e3e;*/
+}
+
+li {
+  /*在公众号下，改变不了li符号的属性（如颜色），并会影响其子元素的属性;而在其它博客平台中，则能正常使用*/
+  margin-bottom: 0.5em;
+  /*  color:#159957; */
+}
+
+.code_size_default
+
+/*代码块默认size*/
+  {
+  line-height: 18px;
+  font-size: 14px;
+  font-weight: normal;
+  word-spacing: 0px;
+  letter-spacing: 0px;
+}
+
+.code_size_tight
+
+/*代码块紧凑size*/
+  {
+  line-height: 15px;
+  font-size: 11px;
+  font-weight: normal;
+  word-spacing: -3px;
+  letter-spacing: 0px;
+}
+
+pre code
+
+/*代码块*/
+  {
+  font-family: Consolas, Inconsolata, Courier, monospace;
+  border-radius: 0px;
+}
+
+blockquote {
+  /*引用块*/
+    /* border: 1px solid #d1f3ff; */
+    border-left: 5px solid #5fa7e4;
+    padding: 10px 15px;
+    color: #3f3f3f;
+    background-color: rgb(244, 252, 255); /* white */
+    border-radius: 3px;
+    position:relative;
+}
+/* 给提示块加info图标 */
+blockquote>* {
+  margin-left: 2rem !important;
+}
+
+
+blockquote p {
+  margin: 0px;
+}
+
+/*================超链接================*/
+span[alt="ref"] > a {
+  /*超链接*/
+  border-bottom: 2px solid #81d8cf !important;
+  padding: 0 4px;
+  /*padding-top: 2px;*/
+  transition: .3s;
+  color: #a9a9a9 !important;
+  text-decoration: none;
+}
+
+span[alt="ref"] > a:hover {
+  border-radius:6px;
+  border-bottom:2px solid transparent;
+  background-color:#81d8cf  !important;
+  color: #a9a9a9 !important;
+  cursor:pointer;
+}
+
+
+
+
+strong
+/*加粗*/
+  {
+  font-weight: bold;
+  color: #000000;
+  /*更改默认的颜色*/
+}
+
+em
+
+/*斜体*/
+  {
+  /*font-style:italic;*/
+  /*把默认的斜体去掉*/
+  color: #6200EA;
+  /*更改默认的颜色*/
+}
+
+del
+
+/*删除线*/
+  {
+  font-style: italic;
+  text-decoration: none;
+  /*把默认的删除线去掉*/
+  color: #2962FF;
+  /*更改默认的颜色*/
+}
+
+strong em
+
+/*强调的斜体*/
+  {
+  font-weight: bold;
+  color: #C51162;
+  /*更改默认的颜色*/
+}
+
+
+hr {
+  /*分隔线*/
+  height: 1px;
+  margin: 1.5rem 0px;
+  border: none;
+  border-top: 1px dashed #A5A5A5;
+}
+
+
+code
+
+/*行内代码*/
+  {
+  word-wrap: break-word;
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin: 0 2px;
+  color: #ff3502;
+  /*更改默认的颜色*/
+  background: #f8f5ec;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  /*图片水平居中*/
+  /* margin:0 0;  */
+  /*图片水平居左，如需要请打开*/
+  max-width: 100%;
+}
+
+figcaption
+
+/*图片描述文字*/
+  {
+  margin-top: 10px;
+  text-align: center;
+  /* text-align:left;  */
+  /*当图片水平居左时，请打开*/
+  color: #999;
+  font-size: 0.7em;
+}
+
+/*================表格开始================*/
+table {
+  display: table;
+  width: 100%;
+  text-align: left;
+}
+
+tbody {
+  border: 0;
+}
+
+table tr {
+  border: 0;
+  border-top: 1px solid #CCC;
+  background-color: white;
+
+}
+
+/*隔行改变行的背景色*/
+table tr:nth-child(2n) {
+  background-color: #F8F8F8;
+}
+
+
+table tr th,
+table tr td {
+  font-size: 1em;
+  border: 1px solid #CCC;
+  padding: 0.5em 1em;
+  text-align: left;
+}
+
+/*表头的属性*/
+table tr th {
+  font-weight: bold;
+  background-color: #F0F0F0;
+}
+
+/*================表格结束================*/
+
+
+
+/*================数学公式开始================*/
+.katex-display {
+  /*块公式*/
+  font-size: 1.22em;
+}
+
+.katex {
+  /*行内公式*/
+  padding: 8px 3px;
+}
+
+.katex-display>.katex {
+  /*块公式*/
+  display: inline-block;
+  text-align: center;
+  padding: 3px;
+}
+
+.katex img {
+  /*行内公式对应的图片*/
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/*================数学公式结束================*/
+
+a[href^="#"] sup {
+  /*注脚*/
+  vertical-align: super;
+  margin: 0 2px;
+  padding: 1px 3px;
+  color: #ffffff;
+  background: #666666;
+  font-size: 0.7em;
+}
+
+/*================任务列表开始================*/
+.task-list-list {
+  list-style-type: none;
+}
+
+.task-list-list.checked {
+  /*已完成*/
+  color: #3e3e3e;
+}
+
+.task-list-list.uncheck {
+  /*未完成*/
+  color: #bfc1bf;
+}
+
+.task-list-list .icon_uncheck,
+.task-list-list .icon_check {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.task-list-list .icon_check:before {
+  /*已完成*/
+  content: "√";
+  border: 1px solid #00c4b6 !important;
+  background-color: #00c4b6 !important;
+  color: white;
+  font-size: 0.625rem
+}
+
+.task-list-list .icon_uncheck:before {
+  /*未完成*/
+  content: "x";
+  border: 1px solid #bfc1bf;
+  color: #bfc1bf;
+  font-size: 0.625rem
+}
+
+.task-list-list .icon_check:before,
+.task-list-list .icon_uncheck:before {
+  /*标志框*/
+  padding: 2px;
+  padding-left: 5px;
+  padding-right: 8px;
+  border-radius: 5px;
+}
+
+
+/** 任务列表小方框 **/
+
+
+
+
+/*================任务列表结束================*/
+
+.toc {
+  /*总目录*/
+  margin-left: 25px;
+}
+
+.toc_item {
+  /*每条目录*/
+  display: block;
+
+}
+
+.toc_left {
+  /*每级目录的缩进*/
+  margin-left: 25px;
+}
+
+
+font {
+    display: inline;
+    padding: .2em .6em;
+    font-size: 90%;
+    font-weight: 400;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    /*white-space: nowrap;*/
+    vertical-align: baseline;
+    border-radius: .1rem;
+    border-radius: 6px;
+    background-color: #e91e64;
+}
+font[title="red"] {
+    background-color:#e91e64;
+}
+font[title="blue"] {
+    background-color:#02aaf4;
+}
+font[title="yellow"] {
+    background-color:#ffc50a;
+}
+font[title="green"] {
+    background-color:#8bc34a;
+}
+font[title="gray"] {
+    background-color:#4c4c4c;
+}
+
+/** 强调型文本 **/
+
+
+span[alt='emp'] {
+  border-bottom: 4px dotted #fe5f58;
+}
+span[alt='underline'] {
+  border-bottom: 2px solid #fe5f58;
+}
+span[alt='wavy'] {
+  text-decoration-style: wavy;
+  text-decoration-line: underline;
+  text-decoration-color: #fe5f58;
+}
+
+/** 隐藏型文本 **/
+
+
+span[alt="hide"] {
+    color: transparent;
+    background: #a1a1a1;
+    border-radius: 2px;
+    -webkit-transition: all .28s ease;
+    -moz-transition: all .28s ease;
+    -o-transition: all .28s ease;
+    -ms-transition: all .28s ease;
+    transition: all .28s ease;
+    -moz-transition: all .28s ease;
+    -webkit-transition: all .28s ease;
+    -o-transition: all .28s ease;
+}
+span[alt="hide"]:hover {
+    color:#a9a9a9;
+    background:0 0
+}
+
+
+
+/* 空心字等文字特效 https://www.cnblogs.com/xiaohuochai/p/7521282.html */
+
+
+span[alt="hollow"]{
+  color:white;
+  text-shadow:1px 1px black,-1px -1px black,1px -1px black,-1px 1px black;
+}
+
+
+
+
+/** 折叠标签 **/
+details {
+  display: block;
+  padding: 16px;
+  margin: 1em 0;
+  border-radius: 4px;
+  background: white;
+  font-size: 14px;
+  -webkit-transition: all .28s ease;
+  -moz-transition: all .28s ease;
+  -o-transition: all .28s ease;
+  -ms-transition: all .28s ease;
+  transition: all .28s ease;
+  -moz-transition: all .28s ease;
+  -webkit-transition: all .28s ease;
+  -o-transition: all .28s ease;
+}
+summary {
+  display: list-item;
+}
+details summary {
+  cursor: pointer;
+  padding: 16px;
+  margin: -16px;
+  border-radius: 4px;
+  color: black;
+  font-size: .875rem!important;
+  font-weight: 700;
+  position: relative;
+  line-height: normal;
+
+}
+details>summary {
+  background: #6e7b99;
+}
+details[open] {
+  border: 2px solid #00c4b6 !important;
+  border-bottom: 2px solid #00c4b6 !important;
+}
+
+details[open]>summary {
+  color: #000;
+  margin-bottom: 0;
+}
+details[open]>summary {
+  border-bottom: 1px solid #5fa7e4;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* 折叠框、视频、音频标签点击时候会出现黑色边框，极不美观，去除 */
+summary:focus {
+  outline: none !important;
+}
+video:focus{
+  outline: none !important;
+}
+audio:focus{
+  outline: none !important;
+}
+
+
+
+/** 表格样式 **/
+
+
+table {
+  padding: 0;
+  word-break: initial;
+  font-size:12pt;
+}
+table tr {
+  line-height: 23px !important;
+  height: 34px !important;
+}
+/*
+table tr {
+  border-top: 1px solid var(--main-6);
+  margin: 0;
+  padding: 0;
+}
+*/
+table tr:nth-child(2n) {
+  background-color: #c5c5c5;
+}
+table tr th {
+  font-weight: bold;
+  border: 1px solid #2f642e;
+  background-color: #f4fcff;
+  border-bottom: 0;
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px;
+}
+table tr td {
+  border: 1px solid #2f642e;
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+  margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+  margin-bottom: 0;
+}
+table tr:hover {
+background-color: rgb(224,248,248);
+}
+
+
+
+/* 时间轴（来自Volantis主题） */
+
+
+div[alt="timeline"] {
+  margin-top: 8px;
+  margin-left: 8px;
+}
+div[alt="timenode"] {
+  position: relative;
+}
+div[alt="timenode"]:after, div[alt="timenode"]:before {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  background: rgba(68,215,182,.5);
+  width: 2px;
+  left: 7px;
+}
+div[alt="timenode"]:before {
+  top: 0px;
+  height: 6px;
+}
+div[alt="timenode"] div[alt="body"], div[alt="timenode"] div[alt="meta"] {
+  max-width: calc(100% - 24px);
+}
+div[alt="timenode"] div[alt="meta"] {
+  position: relative;
+  color: var(--para-color);
+  line-height: 32px;
+  font-size: .8rem;
+  font-weight: 700;
+  margin: 0 0 0 24px;
+}
+div[alt="timenode"] div[alt="meta"]:after, div[alt="timenode"] div[alt="meta"]:before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  z-index: 2;
+  left: -24px;
+}
+div[alt="timenode"] div[alt="meta"]:before {
+  background: rgba(68,215,182,.5);
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+}
+div[alt="timenode"] div[alt="meta"]:after {
+  background: #44d7b6;
+  margin-left: 2px;
+  margin-top: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  -webkit-transform: scale(.5);
+  -moz-transform: scale(.5);
+  -o-transform: scale(.5);
+  -ms-transform: scale(.5);
+  transform: scale(.5);
+}
+div[alt="timenode"] div[alt="body"] {
+  margin: 4px 0 10px 24px;
+  padding: 10px;
+  border-radius: 12px;
+  background: #a0a0a0;
+  display: inline-block;
+  font-size: .9rem;
+}
+div[alt="timenode"]:not(:last-child):after {
+  top: 26px;
+  height: calc(100% - 26px);
+}
+div[alt="timenode"]:last-child:after {
+  top: 26px;
+  height: calc(100% - 30px);
+}
+div[alt="timenode"]:hover div[alt="meta"]{
+  color: #a9a9a9;
+}
+div[alt="timenode"]:hover div[alt="meta"]:before{
+  background:rgba(255,87,34,.5)
+}
+div[alt="timenode"]:hover div[alt="meta"]:after{
+  background:#ff5722;-webkit-transform:scale(1);
+  -moz-transform:scale(1);
+  -o-transform:scale(1);
+  -ms-transform:scale(1);
+  transform:scale(1);
+}
+
+
+
+/** 脚注（上标） **/
+
+
+.footnote {
+  background-color: #f8f8f8;
+  color: #e96900;
+}
+
+/* 脚注上标链接禁止显示下划线样式 */
+sup.footnote a{
+  color: inherit !important; /* 鼠标hover时禁止颜色发生变化 */
+  border-bottom: none;
+  padding: 1px;
+  background-color: inherit;
+}

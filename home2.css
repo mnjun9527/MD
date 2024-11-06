@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+
+
+
+#editor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  overflow: auto;
+  background-color: #333;
+  font-family: courier, monospace;
+  font-size: inherit;
+  color: #fff;
+  word-wrap: break-word;
+  word-break: normal;
+  white-space: pre-wrap;
+  /* // 不会自动换行，除非你enter换行  word-wrap: normal !important;  white-space: normal !important;twhite-space: pre !important;*/
+}
+#file_export_container {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  width: 100%;
+  z-index: 5;
+  visibility: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

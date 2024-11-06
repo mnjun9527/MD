@@ -1,0 +1,645 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="shoticon" href="./favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=0">
+  <meta name="author" content="">
+  <meta name="email" content="">
+  <meta name="description" content="Markdown排版利器，还能让Markdown内容，无需作任何调整就能同时在微信公众号、博客园、掘金、csdn等平台正确显示当前预览的效果">
+  <title>MD在线编辑器</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="./output/index.js?v=2_8_4"></script>
+  <link rel="stylesheet" href="index.css">
+
+  <!-- 实时高亮 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/theme/monokai.min.css">
+  <style type="text/css" id="temp_style">
+  </style>
+  <style type="text/css">
+    #beian {
+      display: inline-block
+    } 
+
+    .code-theme-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .code-theme {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+    }
+
+    .code-theme-icon {
+      display: inline-block;
+      cursor: pointer;
+    }
+
+   
+
+    /* 鼠标悬停时的颜色变化 */
+    .icon_class:hover i,
+    .icon_class:hover .icon-text,
+    .code-theme-wrapper:hover .code-theme-icon i {
+      color: rgba(248, 187, 57, 1);
+    }
+
+    
+
+    /* 添加新的样式规则 */
+    #icon_container_right.hidden {
+        display: none !important; /* 完全隐藏 */
+    }
+
+    /* 或者如果你想让它在底层 */
+    #icon_container_right.lowered {
+        z-index: -1 !important; /* 将其置于底层 */
+        opacity: 0 !important; /* 使其完全透明 */
+        pointer-events: none !important; /* 禁用鼠标事件 */
+    }
+  </style>
+  <!-- 默认样式 -->
+  <!-- <link rel="stylesheet" type="text/css" href="home2.css"> -->
+  <!-- 添加这一行来引入 JetBrains Mono 字体 -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* 添加固定的通知样式类 */
+    .notification-message {
+      position: fixed !important;
+      top: 220px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      background-color: rgba(76, 175, 80, 0.9);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      z-index: 9999;
+      transition: opacity 0.3s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+  </style>
+
+</head>
+
+<body id="body_id">
+  <!-- 代码主题选择器 -->
+  <div id="code_select" class="theme-wrapper">
+    <label>代码主题：</label>
+    <select class="code-theme">
+      <option value="">选择代码主题</option>
+    </select>
+  </div>
+
+  <div id="icon_container_left">
+    <a id="edit_file" class="icon_class default-icons" title="打开本地已存草稿，开始编辑,并自动保存">
+      <i class="fas fa-edit"></i>
+    </a>
+    <a id="export_file" class="icon_class default-icons" title="导出HTML文件">
+      <i class="fas fa-file-export"></i>
+    </a>
+    <a id='color_ref' class="icon_class default-icons" title="调色板">
+      <i class="fas fa-palette"></i>
+    </a>
+    <a id="picture" class="icon_class default-icons" title="上传图片，及图床设置">
+      <i class="fas fa-image"></i>
+    </a>
+    <a id='mycss_icon' class="icon_class default-icons" title="自定义预览区">
+      <i class="fas fa-magic"></i>
+    </a>
+
+    <!-- 全屏切换按钮 -->
+    <a id="toggle_fullscreen" class="icon_class default-icons" title="切换全屏">
+      <i class="fas fa-expand"></i>
+    </a>
+
+    <a id="css_save" class="icon_class diy-icons" title="保存修改" style="display: none;">
+        <i class="fas fa-save"></i>
+    </a>
+    <a id="css_reset" class="icon_class diy-icons" title="恢复默认" style="display: none;">
+        <i class="fas fa-undo"></i>
+    </a>
+    <a id="css_close" class="icon_class diy-icons" title="关闭CSS编辑器" style="display: none;">
+        <i class="fas fa-times"></i>
+    </a>
+  </div>
+
+  <div class="all_container">
+
+
+    <div id="global_popup">
+      <div class="popup_background"></div>
+      <div class="popup_conetent popup">
+      </div>
+    </div>
+
+
+    <div id="picture_popup" style="display:none">
+      <div class="picture_popup_content common_pop">
+        <div class="closePopupContainerId">
+          <span class="icon_class  close_popup_icon close_popup_id"></span>
+        </div>
+        <div class="picItems">
+        </div>
+        <div class="picError">
+          <div class="warning">如有图片上传失败！</div>
+          <div>请点击工具栏“图片”图标，检查图床配置！</div>
+          <div>并确认图片类型为：png、jpg、bmp、gif或jpeg!</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="version_popup" style="display:none">
+      <div class="versionContent common_pop">
+        <div class="closePopupContainerId">
+          <span class="icon_class  close_popup_icon close_popup_id"></span>
+        </div>
+        <div class="versionContentId">
+        </div>
+      </div>
+    </div>
+
+    <div id="picture_setting_popup" style="display:none">
+      <div class="picture_settingPopupContent common_pop">
+        <div class="closePopupContainerId">
+          <span class="icon_class  close_popup_icon close_popup_id"></span>
+        </div>
+        <div class="uploadPicBtnContainer">
+          <label class="uploadPicBtn" for="uploadPicInputId">请点击选择本地图片</label>
+          <input type="file" name="pic" id="uploadPicInputId"
+            accept="image/png,image/jpg,image/jpeg,image/gif,image/bmp" multiple="multiple"
+            style="display:none"></input>
+        </div>
+        <div>
+
+        </div>
+        <div class="picSettingContainer picSetting">
+          <label class="warning">注：如要插入本地图片，先要在七牛云上注册，填写下面信息并“保存”。OK后,插入本地图片会自动上传到七牛云，并正确显示到Md2All中。</label>
+          <a href='https://www.cnblogs.com/garyyan/p/9181809.html' target="_blank">详细教程,请点击此链接查看</a>
+          <div class="picInputInfoItem"><label class="item_name "> Access Key:</label><input class="accesskey"
+              placeholder="请输入你在七牛的AccessKey"></input></div>
+          <div class="picInputInfoItem"><label class="item_name ">Secret Key:</label><input class="secretkey" type="password"
+              placeholder="请输入你在七牛的SecretKey"></input></div>
+          <div class="picInputInfoItem"><label class="item_name ">Bucket Name:</label><input class="bucketname"
+              placeholder="请输入你在七牛个人的储存空间名称,如:mybucket"></input></div>
+          <div class="picInputInfoItem"><label class="item_name ">Bucket Domain:</label><input class="bucketdomain"
+              placeholder="请输入你七牛个人的储存空间域,如mydomain.bkt.clouddn.com"></input></div>
+          <div class="picInputInfoItem autouploadImgItem"><label
+              class="autoUploadImgLabel ">文中需转换为图片的内容(Latex数学公式),会上传到云图床</label><span class="autouploadImg"><input
+                type="checkbox" class="autouploadImgInput"></input></span></div>
+          <button class="savePicSetting">保存设置</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="filewindow_popup" class='popup'></div>
+    <div class="tool_header">
+
+
+
+      <div id="icon_container_right">
+        <a id="copy_btn" class="icon_class btn button" title="复制右侧内容" data-clipboard-action="copy" data-clipboard-target="#render_output_id">
+          <i class="fas fa-clipboard"></i>
+        </a>
+        
+        <div class="code-theme-wrapper icon_class">
+          <select class="code-theme" id="code-theme-select" title="代码块主题">
+            <option value="">选择代码主题</option>
+          </select>
+          <label for="code-theme-select" class="code-theme-icon">
+            <i class="fas fa-laptop-code"></i>
+          </label>
+        </div>
+
+        <div class="css-theme-wrapper icon_class">
+            <select class="css-theme" id="css-theme-select" title="预览区主题">
+                <option value="">选择排版样式</option>
+            </select>
+            <label for="css-theme-select" class="css-theme-icon">
+                <i class="fab fa-markdown"></i>
+            </label>
+        </div>
+
+        <label class="toggle-wrapper icon_class" title="显示源代码">
+            <input id="html" type="checkbox" name="html" class="hidden-checkbox"></input>
+            <i class="fas fa-code"></i>
+        </label>
+
+        <label class="toggle-wrapper icon_class" title="显示代码行数">
+            <input id="codeline" type="checkbox" name="codelineName" class="hidden-checkbox" checked></input>
+            <i class="fas fa-list-ol"></i>
+        </label>
+
+        <label class="toggle-wrapper icon_class" title="代码紧凑显示">
+            <input id="narrowcode" type="checkbox" name="narrowcode" class="hidden-checkbox"></input>
+            <i class="fas fa-compress-alt"></i>
+        </label>
+      </div>
+
+    </div>
+
+    <div id="display_area">
+      <div id="fileWindow">
+      </div>
+      <!-- 编辑器 -->
+      <textarea id="editor" spellcheck="false"></textarea>
+      <div id="drag_indicate"></div>
+      <div id="editor_render">
+        <div id="render_output_id"></div>
+      </div>
+    </div>
+    <div id="cssSetting">
+        <div id="cssEditArea" contenteditable="true"></div>
+    </div>
+  </div>
+
+
+
+
+  <div id="container_foot">
+    <span id="foot_css">
+      <span id="saveIndicate">已保存！ </span>
+      <span id="currentFile"></span>
+    </span>
+  </div>
+  </div>
+
+
+  <div id="file_export_container">
+    <div id="icon_container_DIY">
+      <a id="file_export_save" class="icon_class" title="保存改">
+        <i class="fas fa-save"></i>
+      </a>
+      <a id="file_export_reset" class="icon_class" title="恢复默认">
+        <i class="fas fa-undo"></i>
+      </a>
+      <a id="file_export_gen_file" class="icon_class" title="生成文件">
+        <i class="fas fa-file-download"></i>
+      </a>
+      <a id="file_export_exit" class="icon_class" title="退出到主界面">
+        <i class="fas fa-sign-out-alt"></i>
+      </a>
+    </div>
+
+    <div id="file_export_setting">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/mode/css/css.min.js"></script>
+      <div id="editor-container" contenteditable="true"></div>
+    </div>
+    <div id="export_iframe_container">
+      <iframe id="export_iframe"></iframe>
+      <div id="export_iframe_cover"></div>
+    </div>
+  </div>
+
+  <div class="color_windown" id="color_window_id">
+    <div class="color_toolbar">
+      <span id="color_name_id">red</span>
+      <span class="icon_class  close_color_icon" id="close_color_id"></span>
+    </div>
+    <div class="color_container">
+      <div class="color_father_container">
+        <span class="color_father" style="background:red"></span>
+      </div>
+      <div class="color_son_container">
+        <span class="color_son" style="background:#FFEBEE">#FFEBEE</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="popup" id="popup_id">
+
+  </div>
+
+  <script>
+
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9613757ecf26f057eeb61998d339bd25";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+
+  </script>
+
+  <script>
+    // 现有的脚本内容
+
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelector('#color_ref i').className = 'fas fa-palette';
+      document.querySelector('#edit_file i').className = 'fas fa-edit';
+      document.querySelector('#export_file i').className = 'fas fa-file-export';
+      document.querySelector('#picture i').className = 'fas fa-image';
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelector('#mycss_icon i').className = 'fas fa-magic';
+      document.querySelector('#color_ref i').className = 'fas fa-palette';
+      document.querySelector('#edit_file i').className = 'fas fa-edit';
+      document.querySelector('#export_file i').className = 'fas fa-file-export';
+      document.querySelector('#picture i').className = 'fas fa-image';
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mycssIcon = document.getElementById('mycss_icon');
+        const defaultIcons = document.querySelectorAll('.default-icons');
+        const diyIcons = document.querySelectorAll('.diy-icons');
+        const cssSetting = document.getElementById('cssSetting');
+        const iconContainerRight = document.getElementById('icon_container_right');
+        
+        // 获取全屏切换按钮
+        const toggleFullscreenButton = document.getElementById('toggle_fullscreen');
+        
+        // DIY按钮击处理
+        mycssIcon.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // 隐藏默认图标，包括DIY按钮自己
+            defaultIcons.forEach(icon => {
+                icon.style.display = 'none';
+            });
+            
+            // 显示DIY模式图标
+            diyIcons.forEach(icon => {
+                icon.style.display = 'inline-flex';
+            });
+            
+            // 显示CSS设置面板
+            if(cssSetting) {
+                cssSetting.style.visibility = 'visible';
+            }
+        });
+
+        // 关闭按钮点击处理
+        const cssClose = document.getElementById('css_close');
+        if(cssClose) {
+            cssClose.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 显示所有默认图标
+                defaultIcons.forEach(icon => {
+                    icon.style.display = 'inline-flex';
+                });
+                
+                // 隐藏DIY模式图标
+                diyIcons.forEach(icon => {
+                    icon.style.display = 'none';
+                });
+                
+                // 隐藏CSS设置面板
+                if(cssSetting) {
+                    cssSetting.style.visibility = 'hidden';
+                }
+            });
+        }
+
+        // 全屏切换处理
+        if(toggleFullscreenButton) {
+            toggleFullscreenButton.addEventListener('click', function() {
+                const editor = document.getElementById('editor');
+                editor.classList.toggle('fullscreen');
+                document.body.classList.toggle('fullscreen-mode');
+
+                // 隐藏右侧图标容器
+                iconContainerRight.classList.toggle('hidden');
+
+                // 切换图标
+                const icon = this.querySelector('i');
+                if (editor.classList.contains('fullscreen')) {
+                    icon.classList.remove('fa-expand');
+                    icon.classList.add('fa-compress');
+                } else {
+                    icon.classList.remove('fa-compress');
+                    icon.classList.add('fa-expand');
+                    // 退全屏时显示右侧图标
+                    iconContainerRight.classList.remove('hidden');
+                }
+            });
+        }
+
+        // 导出按钮点击处理
+        const exportFile = document.getElementById('export_file');
+        if(exportFile) {
+            exportFile.addEventListener('click', function() {
+                // 隐藏右侧图标容器
+                iconContainerRight.classList.add('hidden');
+            });
+        }
+
+        // 添加这段新代码 - 处理退出导出界面
+        const fileExportExit = document.getElementById('file_export_exit');
+        if(fileExportExit) {
+            fileExportExit.addEventListener('click', function() {
+                // 显示右侧图标容器
+                iconContainerRight.classList.remove('hidden');
+            });
+        }
+
+        // 添加保存按钮的处理
+        const cssSave = document.getElementById('css_save');
+        if(cssSave) {
+            cssSave.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 保存CSS的逻辑
+                if(cssSetting && cssEditArea) {
+                    // 保存CSS内容的代码
+                    // ...
+                    
+                    // 使用通用的通知样式类显示消息
+                    const notification = document.createElement('div');
+                    notification.className = 'notification-message';
+                    notification.textContent = '样式已保存成功！';
+                    document.body.appendChild(notification);
+
+                    // 3秒后自动消失
+                    setTimeout(() => {
+                        notification.style.opacity = '0';
+                        setTimeout(() => {
+                            document.body.removeChild(notification);
+                        }, 300);
+                    }, 3000);
+                }
+            });
+        }
+
+        // CSS重置按钮的处理（保现有的确认对话框）
+        const cssReset = document.getElementById('css_reset');
+        if(cssReset) {
+            cssReset.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if(confirm('确定要恢复默认样式吗？这将覆盖当前的样式设置。')) {
+                    if(cssSetting && cssEditArea) {
+                        // 重置CSS的逻辑
+                        // ...
+                        
+                        // 使用通用的通知样式类显示消息
+                        const notification = document.createElement('div');
+                        notification.className = 'notification-message';
+                        notification.style.backgroundColor = 'rgba(33, 150, 243, 0.9)'; // 使用蓝色背景
+                        notification.textContent = '样式已恢复默认！';
+                        document.body.appendChild(notification);
+
+                        // 3秒后自动消失
+                        setTimeout(() => {
+                            notification.style.opacity = '0';
+                            setTimeout(() => {
+                                document.body.removeChild(notification);
+                            }, 300);
+                        }, 3000);
+                    }
+                }
+            });
+        }
+    });
+  </script>
+
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      let editor;
+  
+      // 加载 CSS 文件并初始化 CodeMirror 编辑器
+      fetch('css/file_export_setting.css')
+        .then(response => response.text())
+        .then(cssContent => {
+          editor = CodeMirror(document.getElementById("editor-container"), {
+            lineNumbers: true,
+            mode: "css",
+            theme: "monokai",
+            value: cssContent  // 使用获取到的 CSS 内容作为默认值
+          });
+  
+          // 如果本地存储有 CSS，则用本地存储的内容覆盖默认值
+          const savedCss = localStorage.getItem("file_export_css");
+          if (savedCss) {
+            editor.setValue(savedCss);  // 使用本地存储的 CSS
+            applyExportContentStyle(savedCss);  // 立即应用保存的样式
+          } else {
+            applyExportContentStyle(cssContent);  // 如果没有保存的样，应用默认样式
+          }
+  
+          // 监听主题选择下拉框的变
+          const themeSelect = document.getElementById("theme-select");
+          themeSelect.addEventListener("change", (e) => {
+            editor.setOption("theme", e.target.value);
+          });
+        })
+        .catch(error => console.error('Error loading CSS file:', error));
+  
+      // 修改保存按钮的事件监听器
+      const saveButton = document.getElementById("file_export_save");
+      saveButton.addEventListener("click", function() {
+        const cssContent = editor.getValue();
+        localStorage.setItem("file_export_css", cssContent);
+        applyExportContentStyle(cssContent);
+
+        // 添加保存成功提示
+        showNotification('样式已保存成功！', 'success');
+      });
+  
+      // 修改恢复按钮的件监听器
+      const resetButton = document.getElementById("file_export_reset");
+      resetButton.addEventListener("click", function() {
+        if (confirm('确定要恢复默认样式吗？这将覆盖当前的样式设置。')) {
+          fetch('css/file_export_setting.css')
+            .then(response => response.text())
+            .then(cssContent => {
+              editor.setValue(cssContent);
+              applyExportContentStyle(cssContent);
+              localStorage.setItem("file_export_css", cssContent);
+              
+              // 添加重置成功提示
+              showNotification('样式已恢复默认！', 'info');
+            })
+            .catch(error => {
+              console.error('Error resetting CSS file:', error);
+              showNotification('恢复默认样式失败！', 'error');
+            });
+        }
+      });
+  
+      // 新增函数：应用样式到 export_content
+      function applyExportContentStyle(cssContent) {
+        const exportIframe = document.getElementById('export_iframe');
+        if (exportIframe && exportIframe.contentWindow) {
+          const exportContent = exportIframe.contentWindow.document.getElementById('export_content');
+          if (exportContent) {
+            let styleElement = exportIframe.contentWindow.document.getElementById('export_style');
+            if (!styleElement) {
+              styleElement = exportIframe.contentWindow.document.createElement('style');
+              styleElement.id = 'export_style';
+              exportIframe.contentWindow.document.head.appendChild(styleElement);
+            }
+            styleElement.textContent = cssContent;
+          }
+        }
+      }
+  
+      // 监导出按钮点击事件
+      const exportButton = document.getElementById('export_file');
+      exportButton.addEventListener('click', function() {
+        // 在这里添加一个短暂的延迟，确保 iframe 已经加载
+        setTimeout(() => {
+          const savedCss = localStorage.getItem("file_export_css");
+          if (savedCss) {
+            applyExportContentStyle(savedCss);
+          } else {
+            fetch('css/file_export_setting.css')
+              .then(response => response.text())
+              .then(cssContent => applyExportContentStyle(cssContent))
+              .catch(error => console.error('Error loading default CSS:', error));
+          }
+        }, 100);
+      });
+
+      // 添加通知函数
+      function showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = 'notification-message'; // 使用固定的样式类
+        
+        // 根据类型设置背景色
+        const colors = {
+          success: 'rgba(76, 175, 80, 0.9)',
+          error: 'rgba(244, 67, 54, 0.9)',
+          info: 'rgba(33, 150, 243, 0.9)'
+        };
+        
+        notification.style.backgroundColor = colors[type];
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        // 3秒后自动消失
+        setTimeout(() => {
+          notification.style.opacity = '0';
+          setTimeout(() => {
+            document.body.removeChild(notification);
+          }, 300);
+        }, 3000);
+      }
+    });
+
+  </script>
+  
+  
+  
+
+</body>
+
+</html>
